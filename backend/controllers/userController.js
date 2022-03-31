@@ -97,4 +97,47 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-export { register, authUser, authenticate, forgotPassword };
+// Checking the generated token to re make a pw
+const checkToken = async (req, res) => {
+  const { token } = req.params;
+
+  //We validate the token
+  const validToken = await User.findOne({ token });
+  if (validToken) {
+    res.json({ msg: "token valido y el usuario existe" });
+  } else {
+    const error = new Error("Invalid Token");
+    return res.status(404).json({ msg: error.message });
+  }
+};
+
+// Generating a new Password
+const newPassword = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  //We validate the token and update the password
+  const user = await User.findOne({ token });
+  if (user) {
+    user.password = password;
+    user.token = "";
+    try {
+      await user.save();
+      res.json({ msg: "New Password Updated Succesfully" });
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    const error = new Error("Invalid Token");
+    return res.status(404).json({ msg: error.message });
+  }
+};
+
+export {
+  register,
+  authUser,
+  authenticate,
+  forgotPassword,
+  checkToken,
+  newPassword,
+};
