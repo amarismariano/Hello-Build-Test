@@ -18,6 +18,9 @@ const register = async (req, res) => {
     const user = new User(req.body);
     user.token = generateId();
     const savedUser = await user.save();
+    res.json({
+      msg: "User Created Succesfully, Check Your Email to Confirm Your Account",
+    });
     res.json(savedUser);
   } catch (error) {
     console.log(error);
@@ -104,7 +107,7 @@ const checkToken = async (req, res) => {
   //We validate the token
   const validToken = await User.findOne({ token });
   if (validToken) {
-    res.json({ msg: "token valido y el usuario existe" });
+    res.json({ msg: "User Exist, Valid Token" });
   } else {
     const error = new Error("Invalid Token");
     return res.status(404).json({ msg: error.message });

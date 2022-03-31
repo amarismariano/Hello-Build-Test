@@ -1,6 +1,74 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Alert from "../components/Alert";
+import axios from "axios";
 
 const Register = () => {
+  // States
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPw, setRepeatPw] = useState("");
+  const [alert, setAlert] = useState({});
+
+  //Handlers
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validations
+    if ([name, email, password, repeatPw].includes("")) {
+      setAlert({
+        msg: "All Fields Are Mandatory",
+        error: true,
+      });
+      return;
+    }
+    // Password Validations
+    if (password !== repeatPw) {
+      setAlert({
+        msg: "Passwords are not the same",
+        error: true,
+      });
+      return;
+    }
+    // Lenght of password for security
+    if (password.length < 6) {
+      setAlert({
+        msg: "The password is very short, write at least 6 characters",
+        error: true,
+      });
+      return;
+    }
+
+    setAlert({});
+
+    // Creating the user and saving it in the DB
+    try {
+      const { data } = await axios.post("http://localhost:4000/api/users", {
+        name,
+        email,
+        password,
+      });
+      setAlert({
+        msg: data.msg,
+        error: false,
+      });
+
+      //Restore the original State
+      setName("");
+      setEmail("");
+      setPassword("");
+      setRepeatPw("");
+    } catch (error) {
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+    }
+  };
+
+  const { msg } = alert;
+
   return (
     <>
       <h1 className="text-amber-600 font-black text-5xl capitalize">
@@ -8,7 +76,12 @@ const Register = () => {
         <span className="text-slate-700">Repositories!</span>
       </h1>
 
-      <form className="my-10 bg-white shadow rounded-lg p-10">
+      {msg && <Alert alert={alert} />}
+
+      <form
+        onSubmit={handleSubmit}
+        className="my-10 bg-white shadow rounded-lg p-10"
+      >
         <div className="my-5">
           <label
             htmlFor="name"
@@ -21,6 +94,8 @@ const Register = () => {
             type="text"
             placeholder="Your Name"
             className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
 
@@ -36,6 +111,8 @@ const Register = () => {
             type="email"
             placeholder="Enter your email here"
             className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -51,6 +128,8 @@ const Register = () => {
             type="password"
             placeholder="Sign up Password"
             className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
@@ -66,6 +145,8 @@ const Register = () => {
             type="password"
             placeholder="Repeat Password"
             className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+            value={repeatPw}
+            onChange={(e) => setRepeatPw(e.target.value)}
           />
         </div>
 
