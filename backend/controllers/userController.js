@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import generateId from "../helpers/idGenerator.js";
 import generateJWT from "../helpers/JWTGenerator.js";
 
+// Creation of User
 const register = async (req, res) => {
   // Not allowing duplicate users
   const { email } = req.body;
@@ -23,7 +24,8 @@ const register = async (req, res) => {
   }
 };
 
-const authentication = async (req, res) => {
+// Authenticate User
+const authUser = async (req, res) => {
   const { email, password } = req.body;
 
   //Check if the user exist
@@ -53,4 +55,27 @@ const authentication = async (req, res) => {
   }
 };
 
-export { register, authentication };
+// Validate User
+const authenticate = async (req, res) => {
+  // We get the token from the params
+  const { token } = req.params;
+  const confirmedUser = await User.findOne({ token });
+
+  // We validate that is the correct Token
+  if (!confirmedUser) {
+    const error = new Error("Invalid Token");
+    return res.status(403).json({ msg: error.message });
+  }
+
+  try {
+    confirmedUser.confirmed = true;
+    confirmedUser.token = "";
+    await confirmedUser.save();
+    res.json({ msg: "User confirmed successfully" });
+    console.log(confirmedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { register, authUser, authenticate };
