@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import generateId from "../helpers/idGenerator.js";
 
 const register = async (req, res) => {
   // Not allowing duplicate users
@@ -13,6 +14,7 @@ const register = async (req, res) => {
 
   try {
     const user = new User(req.body);
+    user.token = generateId();
     const savedUser = await user.save();
     res.json(savedUser);
   } catch (error) {
@@ -20,4 +22,6 @@ const register = async (req, res) => {
   }
 };
 
-export { register };
+const authentication = async (req, res) => {};
+
+export { register, authentication };
