@@ -1,12 +1,13 @@
 import User from "../models/User.js";
 import generateId from "../helpers/idGenerator.js";
 import generateJWT from "../helpers/JWTGenerator.js";
+import { emailRegister, emailForgotPassword } from "../helpers/emails.js";
 
 // Creation of User
 const register = async (req, res) => {
   // Not allowing duplicate users
   const { email } = req.body;
-  const userExist = await User.findOne({ email });
+  const userExist = await User.findOne({ email: email });
 
   //Validating that the user exist
   if (userExist) {
@@ -17,11 +18,18 @@ const register = async (req, res) => {
   try {
     const user = new User(req.body);
     user.token = generateId();
-    const savedUser = await user.save();
+    await user.save();
+
+    //Confirmation Email
+    emailRegister({
+      email: user.email,
+      name: user.name,
+      token: user.token,
+    });
+
     res.json({
       msg: "User Created Succesfully, Check Your Email to Confirm Your Account",
     });
-    res.json(savedUser);
   } catch (error) {
     console.log(error);
   }
@@ -94,6 +102,14 @@ const forgotPassword = async (req, res) => {
   try {
     user.token = generateId();
     await user.save();
+
+    //We Send the Email
+    emailForgotPassword({
+      email: user.email,
+      name: user.name,
+      token: user.token,
+    });
+
     res.json({ msg: "We have sent an email with instructions" });
   } catch (error) {
     console.log(error);

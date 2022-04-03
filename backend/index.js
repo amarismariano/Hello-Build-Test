@@ -12,7 +12,7 @@ dotenv.config();
 connectDB();
 
 // Config Cors
-const whitelist = ["http://localhost:3000"];
+const whitelist = [process.env.FRONTEND_URL];
 
 const corsOptions = {
   origin: function (origin, callback) {
