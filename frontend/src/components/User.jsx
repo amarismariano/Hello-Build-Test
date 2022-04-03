@@ -23,7 +23,7 @@ const User = ({ users }) => {
   }, []);
 
   return (
-    <div className="max-w-md rounded-lg overflow-hidden shadow-lg ">
+    <div className="w-full rounded-lg overflow-hidden shadow-lg pt-10 border-4">
       <img width={200} height={200} src={users?.avatar_url} className="" />
       <h1 className="font-bold text-2xl capitalize m-2">User: {users.login}</h1>
       <h1 className="font-bold text-2xl capitalize m-2">Repositories: </h1>

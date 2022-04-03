@@ -18,13 +18,17 @@ const Repositories = ({ repos }) => {
   };
 
   return (
-    <div className="mt-2 p-2 bg-gray-50 border  ">
-      <h1 className="font-bold text-xl capitalize">{repos.name}</h1>
-      <p>{repos.description}</p>
-      <p>
-        <span className="font-bold">Technologies: </span>
-        <i>{repos.language}</i>
-      </p>
+    <div className="mt-2 p-2 bg-gray-50 border flex justify-between ">
+      <div>
+        <h1 className="font-bold text-xl capitalize">
+          Repository Name: {repos.name}
+        </h1>
+        <p>Context: {repos.description}</p>
+        <p>
+          <span className="font-bold">Technologies: </span>
+          <i>{repos.language}</i>
+        </p>
+      </div>
       <button
         onClick={() => handleClick(repos)}
         className="text-sm px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold bg-amber-400 text-white center mt-3 flex gap-2 items-center hover:bg-amber-500 transition-colors justify-center"
