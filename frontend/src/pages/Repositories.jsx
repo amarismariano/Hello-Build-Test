@@ -14,11 +14,12 @@ const Repositories = () => {
   return (
     <>
       <h1 className="text-center text-4xl font-bold mb-10">
-        Aquí puedes ver tus repositorios favoritos
+        Here you can see your favorite{" "}
+        <span className="text-amber-500">Repositories!</span> :D
       </h1>
       {likedRepos.length === 0 ? (
-        <h1 className="font-bold text-2xl uppercase ">
-          No tienes repositorios agregados, comienza agregando unos!
+        <h1 className="text-center font-bold text-2xl uppercase ">
+          You don't have repositories yet, add some and come back
         </h1>
       ) : (
         likedRepos.map((repo) => (

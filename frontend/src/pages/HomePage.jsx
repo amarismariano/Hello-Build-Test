@@ -6,8 +6,8 @@ const HomePage = () => {
   return (
     <>
       {user.length === 0 ? (
-        <h1 className="text-4xl font-bold mb-10">
-          Comienza buscando usuarios en el panel del lado izquierdo!
+        <h1 className="text-center text-4xl font-bold mb-10">
+          To get started, find your github user in the left panel!
         </h1>
       ) : (
         user.map((users) => (
