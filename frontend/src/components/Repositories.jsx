@@ -23,7 +23,7 @@ const Repositories = ({ repos }) => {
         <h1 className="font-bold text-xl capitalize">
           Repository Name: {repos.name}
         </h1>
-        <p>Context: {repos.description}</p>
+        <p>Description: {repos.description}</p>
         <p>
           <span className="font-bold">Technologies: </span>
           <i>{repos.language}</i>
