@@ -1,7 +1,10 @@
 import useUsers from "../hooks/useUsers";
+import { useState } from "react";
 
 const Repositories = ({ repos }) => {
   const { setLikedRepos, likedRepos } = useUsers();
+
+  const [clicked, setClicked] = useState(false);
 
   const handleClick = ({ name, description, id }) => {
     const findRepo = likedRepos.find((repo) => {
@@ -11,6 +14,7 @@ const Repositories = ({ repos }) => {
     if (findRepo) return alert("Ya Agregaste este Repositorio");
 
     setLikedRepos((prevState) => [...prevState, { name, description, id }]);
+    setClicked(true);
   };
 
   return (
@@ -27,9 +31,9 @@ const Repositories = ({ repos }) => {
       </div>
       <button
         onClick={() => handleClick(repos)}
-        className="text-sm px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold bg-amber-400 text-white center mt-3 flex gap-2 items-center hover:bg-amber-500 transition-colors justify-center"
+        className="text-sm px-5 py-3 w-full md:w-auto sm:w-1/2 rounded-lg uppercase font-bold bg-amber-400 text-white center mt-3 flex gap-2 items-center hover:bg-amber-500 transition-colors justify-center"
       >
-        Agregar a tu lista
+        {!clicked ? "Agregar a tu lista" : "Agregado a la lista"}
       </button>
     </div>
   );
