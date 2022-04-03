@@ -24,19 +24,19 @@ const User = ({ users }) => {
 
   return (
     <div className="w-full rounded-lg overflow-hidden shadow-lg pt-10 border-4  ">
-      <img width={200} height={200} src={users?.avatar_url} className="" />
+      <img width={250} height={250} src={users?.avatar_url} />
       <h1 className="font-bold text-2xl capitalize m-2">User: {users.login}</h1>
       <h1 className="font-bold text-2xl capitalize m-2">Repositories: </h1>
       {repoList.map((repos) => (
         <ol className="rounded">
           <li key={repos.id}>
-            <Repositories repos={repos} />
+            <Repositories key={repos.id} repos={repos} />
           </li>
         </ol>
       ))}
       {!seeMore ? (
         <button
-          className="text-sm m-2 px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold bg-amber-400 text-white center mt-3 flex gap-2 items-center hover:bg-amber-500 transition-colors justify-center"
+          className="text-sm m-2 px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold bg-amber-500 text-white center mt-3 flex gap-2 items-center hover:bg-amber-600 transition-colors justify-center"
           onClick={() => setSeeMore(true)}
         >
           See More

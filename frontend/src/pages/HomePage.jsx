@@ -5,11 +5,17 @@ const HomePage = () => {
   const { user } = useUsers();
   return (
     <>
-      {user.map((users) => (
-        <h1 key={users.id}>
-          <User users={users} />
+      {user.length === 0 ? (
+        <h1 className="text-4xl font-bold mb-10">
+          Comienza buscando usuarios en el panel del lado izquierdo!
         </h1>
-      ))}
+      ) : (
+        user.map((users) => (
+          <div key={users.id}>
+            <User key={users.id} users={users} />
+          </div>
+        ))
+      )}
     </>
   );
 };

@@ -18,7 +18,7 @@ const Repositories = () => {
       </h1>
       {likedRepos.length === 0 ? (
         <h1 className="font-bold text-2xl uppercase ">
-          No tienes repositorios agregados, comienza agregando unos
+          No tienes repositorios agregados, comienza agregando unos!
         </h1>
       ) : (
         likedRepos.map((repo) => (

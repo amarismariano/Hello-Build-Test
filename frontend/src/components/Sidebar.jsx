@@ -24,7 +24,7 @@ const Sidebar = () => {
       />
       <button
         type="button"
-        className="text-sm px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold bg-amber-400 text-white center mt-5 flex gap-2 items-center justify-center"
+        className="text-sm px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold bg-amber-500 text-white center mt-5 flex gap-2 items-center justify-center hover:bg-amber-600 transition-colors "
         onClick={handleClick}
       >
         Search!

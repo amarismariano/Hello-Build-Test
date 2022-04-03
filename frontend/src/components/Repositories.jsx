@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useUsers from "../hooks/useUsers";
 
 const Repositories = ({ repos }) => {
@@ -16,7 +15,7 @@ const Repositories = ({ repos }) => {
 
   return (
     <div className="mt-2 p-2 bg-gray-50 border flex justify-between ">
-      <div>
+      <div key={repos.id}>
         <h1 className="font-bold text-xl capitalize">
           Repository Name: {repos.name}
         </h1>

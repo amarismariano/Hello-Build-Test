@@ -25,7 +25,7 @@ const Header = () => {
           <button
             onClick={handleLogOut}
             type="button"
-            className="text-white text-sm bg-amber-600 p-3 rounded-md uppercase font-bold"
+            className="text-white text-sm bg-amber-500 hover:bg-amber-600 transition-colors p-3 rounded-md uppercase font-bold"
           >
             Log Out
           </button>
