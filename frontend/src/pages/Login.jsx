@@ -35,8 +35,8 @@ const Login = () => {
       });
       setAlert({});
       localStorage.setItem("token", data.token);
-      navigate("/home-page");
       setAuth(data);
+      navigate("/home-page");
     } catch (error) {
       setAlert({
         msg: error.response.data.msg,

@@ -12,8 +12,6 @@ const User = ({ users }) => {
     try {
       const url = `https://api.github.com/users/${users.login}/repos`;
       const { data } = await axios(url);
-
-      console.log(data);
       setRepo(data);
     } catch (error) {
       console.log(error);

@@ -40,12 +40,17 @@ const AuthProvider = ({ children }) => {
     authUser();
   }, []);
 
+  const logOutAuth = () => {
+    setAuth({});
+  };
+
   const navigate = useNavigate();
 
   return (
     <AuthContext.Provider
       value={{
         setAuth,
+        logOutAuth,
         auth,
         loading,
       }}

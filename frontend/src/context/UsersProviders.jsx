@@ -18,6 +18,12 @@ const UsersProviders = ({ children }) => {
     }
   };
 
+  const logOut = () => {
+    setUser([]);
+    setInput("");
+    setLikedRepos([]);
+  };
+
   return (
     <UsersContext.Provider
       value={{
@@ -28,6 +34,7 @@ const UsersProviders = ({ children }) => {
         setUser,
         setInput,
         setLikedRepos,
+        logOut,
       }}
     >
       {children}
