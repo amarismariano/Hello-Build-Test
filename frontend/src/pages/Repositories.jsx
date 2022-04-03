@@ -3,11 +3,10 @@ import useUsers from "../hooks/useUsers";
 
 const Repositories = () => {
   const { likedRepos, setLikedRepos } = useUsers();
-  console.log(likedRepos);
 
+  // Deleting the repos
   const handleDelete = (id) => {
     setLikedRepos((prevState) => {
-      console.log(prevState);
       return prevState.filter((repo) => repo.id !== id);
     });
   };

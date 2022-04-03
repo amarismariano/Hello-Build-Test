@@ -4,17 +4,14 @@ import useUsers from "../hooks/useUsers";
 const Repositories = ({ repos }) => {
   const { setLikedRepos, likedRepos } = useUsers();
 
-  const handleClick = ({ name, description, owner, id }) => {
+  const handleClick = ({ name, description, id }) => {
     const findRepo = likedRepos.find((repo) => {
       return repo.id === id;
     });
 
     if (findRepo) return alert("Ya Agregaste este Repositorio");
 
-    setLikedRepos((prevState) => [
-      ...prevState,
-      { name, description, owner, id },
-    ]);
+    setLikedRepos((prevState) => [...prevState, { name, description, id }]);
   };
 
   return (
