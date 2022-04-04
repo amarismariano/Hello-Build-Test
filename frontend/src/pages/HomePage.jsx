@@ -10,9 +10,9 @@ const HomePage = () => {
           To get started, find your github user in the left panel!
         </h1>
       ) : (
-        user.map((users) => (
+        user.map((users, index) => (
           <div key={users.id}>
-            <User key={users.id} users={users} />
+            <User key={index} users={users} />
           </div>
         ))
       )}

@@ -27,8 +27,8 @@ const User = ({ users }) => {
       <img width={250} height={250} src={users?.avatar_url} />
       <h1 className="font-bold text-2xl capitalize m-2">User: {users.login}</h1>
       <h1 className="font-bold text-2xl capitalize m-2">Repositories: </h1>
-      {repoList.map((repos) => (
-        <ol className="rounded">
+      {repoList.map((repos, index) => (
+        <ol key={index} className="rounded">
           <li key={repos.id}>
             <Repositories key={repos.id} repos={repos} />
           </li>

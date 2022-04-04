@@ -23,7 +23,10 @@ const Repositories = () => {
         </h1>
       ) : (
         likedRepos.map((repo) => (
-          <div className="mt-2 p-2 bg-gray-50 border flex justify-between">
+          <div
+            key={repo.id}
+            className="mt-2 p-2 bg-gray-50 border flex justify-between"
+          >
             <div>
               <h1 className="font-bold capitalize">{repo.name}</h1>
               <p>{repo.description}</p>
