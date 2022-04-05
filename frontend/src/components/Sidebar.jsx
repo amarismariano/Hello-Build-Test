@@ -1,14 +1,27 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useUsers from "../hooks/useUsers";
+import Alert from "./Alert";
 
 const Sidebar = () => {
   const { auth } = useAuth();
   const { input, setInput, getUsers } = useUsers();
+  const [alert, setAlert] = useState({});
 
   const handleClick = () => {
+    if (input === "") {
+      setAlert({
+        msg: "All Fields are mandatory",
+        error: true,
+      });
+      return;
+    }
+
     getUsers();
+    setAlert({});
   };
+
+  const { msg } = alert;
 
   return (
     <aside className="md:w-80 lg:w-96 px-5 py-10 border">
@@ -17,6 +30,7 @@ const Sidebar = () => {
       </p>
 
       <p className="text-md capitalize font-bold">Start searching:</p>
+      {msg && <Alert alert={alert} />}
       <input
         className=" w-full p-3  font-bold block mt-5  text-center rounded-lg "
         placeholder="Search for a User"
