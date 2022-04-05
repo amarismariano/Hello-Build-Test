@@ -28,9 +28,19 @@ const Repositories = () => {
             className="mt-2 p-2 bg-gray-50 border flex justify-between"
           >
             <div>
-              <h1 className="font-bold capitalize">{repo.name}</h1>
-              <p>{repo.description}</p>
-              <p>{repo.language}</p>
+              <h1 className="font-bold capitalize">Name: {repo.name}</h1>
+              <p>
+                <span className="font-bold capitalize">Description: </span>
+                {repo.description ? repo.description : "No description founded"}
+              </p>
+              <p>
+                <span className="font-bold capitalize">Technologies: </span>
+                <i>{repo.language}</i>
+              </p>
+              <p>
+                <span className="font-bold capitalize">Owner: </span>{" "}
+                {repo.owner.login}
+              </p>
             </div>
 
             <button

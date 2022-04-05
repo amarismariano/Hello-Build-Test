@@ -9,7 +9,7 @@ const Repositories = ({ repos }) => {
   const [clicked, setClicked] = useState(false);
 
   // Handlers
-  const handleClick = ({ name, description, id }) => {
+  const handleClick = ({ name, description, id, language, owner }) => {
     const findRepo = likedRepos.find((repo) => {
       return repo.id === id;
     });
@@ -17,7 +17,10 @@ const Repositories = ({ repos }) => {
     // Validations
     if (findRepo) return alert("Ya Agregaste este Repositorio");
 
-    setLikedRepos((prevState) => [...prevState, { name, description, id }]);
+    setLikedRepos((prevState) => [
+      ...prevState,
+      { name, description, id, language, owner },
+    ]);
     setClicked(true);
   };
 
@@ -30,7 +33,10 @@ const Repositories = ({ repos }) => {
         <h1 className="font-bold text-xl capitalize">
           Repository Name: {repos.name}
         </h1>
-        <p>Description: {repos.description}</p>
+        <p>
+          <span className="font-bold">Description: </span>{" "}
+          {repos.description ? repos.description : "No description founded"}
+        </p>
         <p>
           <span className="font-bold">Technologies: </span>
           <i>{repos.language}</i>
