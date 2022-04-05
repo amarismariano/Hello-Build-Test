@@ -35,11 +35,11 @@ const Repositories = ({ repos }) => {
         </h1>
         <p>
           <span className="font-bold">Description: </span>{" "}
-          {repos.description ? repos.description : "No description founded"}
+          {repos.description ? repos.description : "No description Found"}
         </p>
         <p>
           <span className="font-bold">Technologies: </span>
-          <i>{repos.language}</i>
+          <i>{repos.language ? repos.language : "No technologies Found"}</i>
         </p>
       </div>
       <button
