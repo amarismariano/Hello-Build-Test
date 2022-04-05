@@ -31,11 +31,11 @@ const Repositories = () => {
               <h1 className="font-bold capitalize">Name: {repo.name}</h1>
               <p>
                 <span className="font-bold capitalize">Description: </span>
-                {repo.description ? repo.description : "No description founded"}
+                {repo.description ? repo.description : "No description Found"}
               </p>
               <p>
                 <span className="font-bold capitalize">Technologies: </span>
-                <i>{repo.language}</i>
+                <i>{repo.language ? repo.language : "No technologies Found"}</i>
               </p>
               <p>
                 <span className="font-bold capitalize">Owner: </span>{" "}
